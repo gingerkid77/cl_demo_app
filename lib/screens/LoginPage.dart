@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 
 //Moved HomePage widget to a separate file
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class LoginPage extends StatefulWidget {
 
-  final String title;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LoginPageState extends State<LoginPage> {
 
   // Variables to hold state of input fields in the form
   String email = '';
@@ -22,7 +20,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
 
-        title: Text(widget.title),
+        title: Text('Login'),
       ),
       body: Container(
 
