@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 
 // User Profile Page
 // keeping it as stateful as we'll be passing in the auth token
-class UserProfilePage extends StatefulWidget {
-  UserProfilePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+class HomePage extends StatefulWidget {
 
   @override
-  _UserProfilePageState createState() => _UserProfilePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _UserProfilePageState extends State<UserProfilePage> {
+class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
