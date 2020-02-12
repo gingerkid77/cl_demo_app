@@ -18,6 +18,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
 
+    String error = '';
+
     return Scaffold(
       appBar: AppBar(
 
@@ -59,7 +61,17 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
-                    _attemptLogin(email, password);
+                    dynamic authResponse = await _attemptLogin(email, password);
+
+                    print('authResponse is $authResponse');
+
+                    if(authResponse != null) {
+                      // logged in
+                    }
+                    else {
+                      print('Showing an error to the user would be helpful');
+                    }
+
                   }
               ),
             ],
@@ -69,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Future<void> _attemptLogin(email, password) async {
+  Future<dynamic> _attemptLogin(email, password) async {
 
     // some debug to make sure the values are coming through ok
     print('Logging in with [$email] [$password]');
@@ -94,13 +106,14 @@ class _LoginPageState extends State<LoginPage> {
       // get the response and debug it
       dynamic json = response.json();
 
-      print(json);
+      return json;
     }
     catch(e)
     {
       print('Failed to log in successfully $e ${response.statusCode}');
     }
 
+    return null;
   }
 
 }
