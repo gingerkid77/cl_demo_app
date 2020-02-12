@@ -63,8 +63,6 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     dynamic authResponse = await _attemptLogin(email, password);
 
-                    print('authResponse is $authResponse');
-
                     Navigator.pushReplacementNamed(context, '/home', arguments: {
                       'authToken': authResponse['classlistToken']
                     });
