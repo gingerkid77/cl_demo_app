@@ -26,23 +26,29 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
 
+        // some padding to make the layout a bit better
+        padding: EdgeInsets.symmetric(vertical: 40.0, horizontal: 75.0),
+
         child: Form(
           child: Column(
 
-            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+
+              SizedBox(height: 15.0),
               // Input field for the email address
               TextFormField(
                 onChanged: (val) {
                   setState(() => email = val);
                 },
               ),
+              SizedBox(height: 15.0),
               // Input field for the password
               TextFormField(
                 onChanged: (val) {
                   setState(() => password = val);
                 },
               ),
+              SizedBox(height: 15.0),
               RaisedButton(
                   color: Colors.blue,
                   child: Text(
