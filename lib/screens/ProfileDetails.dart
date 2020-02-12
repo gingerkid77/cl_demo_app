@@ -10,8 +10,16 @@ class ProfileDetailsPage extends StatefulWidget {
 
 class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
 
+  dynamic profileData = {};
+
   @override
   Widget build(BuildContext context) {
+
+    dynamic widgetArguments = ModalRoute.of(context).settings.arguments;
+
+    profileData = widgetArguments['profileData'];
+
+    print('Number of pupils is ${profileData['pupils'].length}');
 
     return Scaffold(
       appBar: AppBar(
@@ -28,9 +36,10 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
           children: <Widget>[
 
             CircleAvatar(
-              backgroundImage: NetworkImage('https://storage.googleapis.com/class-list-api-europe/5776637916348416'),
+              backgroundImage: NetworkImage(profileData['avatar']),
               radius: 50.0,
             ),
+            SizedBox(height: 15.0),
             Text(
               'Name',
               style: TextStyle(
@@ -39,7 +48,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
               )
             ),
             Text(
-              'Name goes here'
+              '${profileData['firstName']} ${profileData['lastName']}'
             ),
             SizedBox(height: 15.0),
             Text(
@@ -50,7 +59,7 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                 )
             ),
             Text(
-                'Address goes here'
+                '${profileData['address']['houseName']} ${profileData['address']['streetAddress']} ${profileData['address']['city']} ${profileData['address']['postCode']}'
             ),
             SizedBox(height: 15.0),
             Text(
@@ -60,8 +69,31 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                   fontWeight: FontWeight.bold,
                 )
             ),
-            Text(
-                'List of pupils goes here'
+            // Flexible stops infinite sizing errors
+            Flexible(
+              child:
+                ListView.builder(
+                  // use this property to stop the list expanding to the max of the screen
+                  shrinkWrap: true,
+                  itemCount: profileData['pupils'].length,
+                    itemBuilder: (context, index) {
+
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Text(
+                              '${profileData['pupils'][index]['firstName']} ${profileData['pupils'][index]['lastName']}'
+                          ),
+                          Text(
+                              '${profileData['pupils'][index]['secondTierName']}'
+                          ),
+                          Text(
+                              '${profileData['pupils'][index]['firstTierName']}'
+                          ),
+                        ],
+                      );
+                    }
+                ),
             ),
             SizedBox(height: 15.0),
             Text(
@@ -73,7 +105,8 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
             ),
             Text(
                 'Known family members'
-            ),SizedBox(height: 15.0),
+            ),
+            SizedBox(height: 15.0),
             Text(
                 'Invites',
                 style: TextStyle(
