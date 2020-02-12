@@ -24,36 +24,38 @@ class _HomePageState extends State<HomePage> {
 
         title: Text(widget.title),
       ),
-      body: Center(
+      body: Container(
 
-        child: Column(
+        child: Form(
+          child: Column(
 
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Input field for the email address
-            TextFormField(
-              onChanged: (val) {
-                setState(() => email = val);
-              },
-            ),
-            // Input field for the password
-            TextFormField(
-              onChanged: (val) {
-                setState(() => password = val);
-              },
-            ),
-            RaisedButton(
-                color: Colors.pink[400],
-                child: Text(
-                  'Sign In',
-                  style: TextStyle(color: Colors.white),
-                ),
-                onPressed: () async {
-                  print(email);
-                  print(password);
-                }
-            ),
-          ],
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // Input field for the email address
+              TextFormField(
+                onChanged: (val) {
+                  setState(() => email = val);
+                },
+              ),
+              // Input field for the password
+              TextFormField(
+                onChanged: (val) {
+                  setState(() => password = val);
+                },
+              ),
+              RaisedButton(
+                  color: Colors.blue,
+                  child: Text(
+                    'Sign In',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () async {
+                    print(email);
+                    print(password);
+                  }
+              ),
+            ],
+          ),
         ),
       )
     );
