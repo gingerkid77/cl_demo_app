@@ -21,30 +21,27 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
         title: Text('Home Page'),
       ),
-      body: Container(
+      body: Center(
 
-        padding: EdgeInsets.symmetric(vertical: 40.0, horizontal: 75.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
 
-        child: Form(
-          child: Column(
-
-            children: <Widget>[
-
-              SizedBox(height: 50.0),
-              RaisedButton(
-                  color: Colors.blue,
-                  child: Text(
-                    'User Profile',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () async {
-                    print('Load the user profile');
-                  }
-              ),
-            ],
-          ),
+          children: <Widget>[
+            SizedBox(height: 50.0),
+            RaisedButton(
+                color: Colors.blue,
+                child: Text(
+                  'User Profile',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () async {
+                  print('Load the user profile');
+                }
+            ),
+          ],
         ),
       )
     );
+
   }
 }
