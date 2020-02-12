@@ -12,6 +12,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  // Variables to hold state of input fields in the form
+  String email = '';
+  String password = '';
+
   @override
   Widget build(BuildContext context) {
 
@@ -26,10 +30,29 @@ class _HomePageState extends State<HomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Home page screen',
+            // Input field for the email address
+            TextFormField(
+              onChanged: (val) {
+                setState(() => email = val);
+              },
             ),
-
+            // Input field for the password
+            TextFormField(
+              onChanged: (val) {
+                setState(() => password = val);
+              },
+            ),
+            RaisedButton(
+                color: Colors.pink[400],
+                child: Text(
+                  'Sign In',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onPressed: () async {
+                  print(email);
+                  print(password);
+                }
+            ),
           ],
         ),
       )
