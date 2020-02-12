@@ -20,8 +20,6 @@ class _HomePageState extends State<HomePage> {
 
     String authToken = widgetData['authToken'];
 
-    print( 'auth token data is $authToken');
-
     return Scaffold(
       appBar: AppBar(
 
@@ -45,6 +43,10 @@ class _HomePageState extends State<HomePage> {
 
                   if(profileData != null) {
                     // load the details page
+
+                    Navigator.pushNamed(context, '/profile', arguments: {
+                    'profileData': profileData
+                    });
                   }
                   else {
                     // handle the error here with a nice message?
@@ -83,8 +85,6 @@ class _HomePageState extends State<HomePage> {
 
       // get the response and debug it
       dynamic json = response.json();
-
-      print('Profile data is\n $json');
 
       return json;
     }
