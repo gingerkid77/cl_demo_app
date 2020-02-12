@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:requests/requests.dart';
 
 //Moved HomePage widget to a separate file
 class LoginPage extends StatefulWidget {
@@ -58,8 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () async {
-                    print(email);
-                    print(password);
+                    _attemptLogin(email, password);
                   }
               ),
             ],
@@ -68,4 +68,39 @@ class _LoginPageState extends State<LoginPage> {
       )
     );
   }
+
+  Future<void> _attemptLogin(email, password) async {
+
+    // some debug to make sure the values are coming through ok
+    print('Logging in with [$email] [$password]');
+
+    Response response;
+
+    try {
+
+      // invoke the API to authenticate
+      response = await Requests.post(
+          'https://api.classlist.com/_ah/api/sso/v1/signIn',
+          json: {
+            "email": email,
+            "password": password,
+            "dvcsgn": "emulatordevicesignature",
+            "os": "WindowsAndroid"
+          }
+      );
+
+      response.raiseForStatus();
+
+      // get the response and debug it
+      dynamic json = response.json();
+
+      print(json);
+    }
+    catch(e)
+    {
+      print('Failed to log in successfully $e ${response.statusCode}');
+    }
+
+  }
+
 }
