@@ -1,26 +1,20 @@
 import 'package:cl_demo_app/screens/ProfileDetails.dart';
-import 'package:cl_demo_app/screens/UserProfile.dart';
+import 'package:cl_demo_app/screens/UserHomePage.dart';
 import 'package:flutter/material.dart';
-import 'screens/HomePage.dart';
+import 'screens/LoginPage.dart';
 
-void main() => runApp(ClasslistDemoApp());
+void main() => runApp(MaterialApp(
 
-class ClasslistDemoApp extends StatelessWidget {
+    initialRoute: '/',
+    routes: {
+      '/': (context) => LoginPage(),
+      '/home': (context) => HomePage(),
+      '/profile': (context) => ProfileDetailsPage(),
+    }
 
-  // Build the root of the application
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Classlist Demo App',
-      theme: ThemeData(
+));
 
-        primarySwatch: Colors.blue,
-      ),
-      //home: HomePage(title: 'Classlist Demo Home Page'),
-      home: ProfileDetailsPage()
-    );
-  }
-}
+
 
 
 
