@@ -36,6 +36,8 @@ class _HomePageState extends State<HomePage> {
 
               SizedBox(height: 15.0),
               // Input field for the email address
+              // it might be nice to have a formatter for email addresses here
+              // to stop auto uppercase etc
               TextFormField(
                 onChanged: (val) {
                   setState(() => email = val);
@@ -44,6 +46,8 @@ class _HomePageState extends State<HomePage> {
               SizedBox(height: 15.0),
               // Input field for the password
               TextFormField(
+                // obscure the text as this is a password field
+                obscureText: true,
                 onChanged: (val) {
                   setState(() => password = val);
                 },
