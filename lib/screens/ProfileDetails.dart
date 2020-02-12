@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 // User Profile Page
 // keeping it as stateful as we'll be passing in the auth token
 class ProfileDetailsPage extends StatefulWidget {
-  ProfileDetailsPage({Key key, this.title}) : super(key: key);
-
-  final String title;
 
   @override
   _ProfileDetailsPageState createState() => _ProfileDetailsPageState();
@@ -27,10 +24,9 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
 
         child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            
+
             CircleAvatar(
               backgroundImage: NetworkImage('https://storage.googleapis.com/class-list-api-europe/5776637916348416'),
               radius: 50.0,
