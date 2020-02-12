@@ -1,3 +1,4 @@
+import 'package:cl_demo_app/screens/ProfileDetails.dart';
 import 'package:cl_demo_app/screens/UserProfile.dart';
 import 'package:flutter/material.dart';
 import 'screens/HomePage.dart';
@@ -16,7 +17,7 @@ class ClasslistDemoApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       //home: HomePage(title: 'Classlist Demo Home Page'),
-      home: UserProfilePage()
+      home: ProfileDetailsPage()
     );
   }
 }
