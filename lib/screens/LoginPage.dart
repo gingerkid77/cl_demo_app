@@ -65,6 +65,10 @@ class _LoginPageState extends State<LoginPage> {
 
                     print('authResponse is $authResponse');
 
+                    Navigator.pushReplacementNamed(context, '/home', arguments: {
+                      'authToken': authResponse['classlistToken']
+                    });
+
                     if(authResponse != null) {
                       // logged in
                     }
@@ -81,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  // method to attempt the login
   Future<dynamic> _attemptLogin(email, password) async {
 
     // some debug to make sure the values are coming through ok
@@ -115,5 +120,4 @@ class _LoginPageState extends State<LoginPage> {
 
     return null;
   }
-
 }
