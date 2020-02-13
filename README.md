@@ -2,15 +2,22 @@
 
 Demo app for classlist
 
-## Getting Started
+## Overview
 
-This project is a starting point for a Flutter application.
+Implemented the app according to the brief to allow login and view of a user profile details page.
 
-A few resources to get you started if this is your first Flutter project:
+Some notes on implementation
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- The app has only been tested in the Android emulator, not on a real device so far
+- The implementation focuses on happy path & MVP. Some basic error handling has been added for authentication. Areas for improvement noted below
+- Additional packages used were request, shared_preferences and spinkit
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+Areas for improvement
+
+- Better handling of authentication errors including display of a message to the user
+- improved handling of state between app restarts. At the moment the loading page works but is not ideal.
+- Layout of the profile details page could be improved, particularly tabular data
+- Validation of login input, regex for email and password to enforce standards
+- Checking for presence of elements in the API response. The code assumes that certain attributes will be present and if not null or index errors may occur
+- Refactoring of authentication logic into a single auth service class, rather than spread across a number of classes
