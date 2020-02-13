@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:requests/requests.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-//Moved HomePage widget to a separate file
+// Login page showing login fields
 class LoginPage extends StatefulWidget {
-
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -63,12 +63,10 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: () async {
                     dynamic authResponse = await _attemptLogin(email, password);
 
-                    Navigator.pushReplacementNamed(context, '/home', arguments: {
-                      'authToken': authResponse['classlistToken']
-                    });
-
                     if(authResponse != null) {
-                      // logged in
+                      Navigator.pushReplacementNamed(context, '/home', arguments: {
+                        'authToken': authResponse['classlistToken']
+                      });
                     }
                     else {
                       print('Showing an error to the user would be helpful');
@@ -108,6 +106,11 @@ class _LoginPageState extends State<LoginPage> {
 
       // get the response and debug it
       dynamic json = response.json();
+
+      // save the token in prefs so the user can get back in without
+      // having to log in each time
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('authToken', json['classlistToken']);
 
       return json;
     }
