@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:requests/requests.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // User Profile Page
 // keeping it as stateful as we'll be passing in the auth token
@@ -24,6 +25,13 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
 
         title: Text('Home Page'),
+        actions: <Widget>[
+          FlatButton.icon(
+          icon: Icon(Icons.person),
+          label: Text('Logout'),
+          onPressed: () => _logout(),
+        ),
+        ]
       ),
       body: Center(
 
@@ -59,6 +67,20 @@ class _HomePageState extends State<HomePage> {
         ),
       )
     );
+  }
+
+  // method to log the user out. Added this to test the
+  // prefs storage approach
+  void _logout() async {
+
+    final prefs = await SharedPreferences.getInstance();
+
+    // remove the auth token
+    prefs.remove('authToken');
+
+    // go back to the home page
+    Navigator.pushReplacementNamed(context, '/login');
+
   }
 
   // private method to get the profile data
