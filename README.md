@@ -21,3 +21,4 @@ Areas for improvement
 - Validation of login input, regex for email and password to enforce standards
 - Checking for presence of elements in the API response. The code assumes that certain attributes will be present and if not null or index errors may occur
 - Refactoring of authentication logic into a single auth service class, rather than spread across a number of classes
+- Use of a local db for user state and other local app configuration
