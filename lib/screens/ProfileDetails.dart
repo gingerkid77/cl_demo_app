@@ -19,12 +19,10 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
 
     profileData = widgetArguments['profileData'];
 
-    print('Number of pupils is ${profileData['pupils'].length}');
-
     return Scaffold(
       appBar: AppBar(
 
-        title: Text('Profile Details'),
+        title: Text('Profile Details')
       ),
       body: Container(
 
@@ -103,9 +101,6 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                   fontWeight: FontWeight.bold,
                 )
             ),
-            Text(
-                'Known family members'
-            ),
             SizedBox(height: 15.0),
             Text(
                 'Invites',
@@ -114,13 +109,60 @@ class _ProfileDetailsPageState extends State<ProfileDetailsPage> {
                   fontWeight: FontWeight.bold,
                 )
             ),
-            Text(
-                'Address goes here'
-            )
+            Flexible(
+              child:
+              ListView.builder(
+                // use this property to stop the list expanding to the max of the screen
+                  shrinkWrap: true,
+                  itemCount: profileData['familyMembers']['invites'].length,
+                  itemBuilder: (context, index) {
+
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: <Widget>[
+                        Text(
+                            '${profileData['familyMembers']['invites'][index]['firstName']} ${profileData['familyMembers']['invites'][index]['lastName']}'
+                        ),
+                        _getIsMemberIcon(profileData['familyMembers']['invites'][index]['member']),
+
+                        RaisedButton(
+                            color: Colors.blue,
+                            child: Text(
+                              'Send invite',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () {print('Send an invite');}
+
+                        ),
+                      ],
+                    );
+                  }
+              ),
+            ),
           ],
         ),
       )
     );
+
+  }
+
+  // return a tick or a cross for the member indicator icon
+  Icon _getIsMemberIcon(isMember) {
+
+    if(isMember) {
+      return Icon(
+        Icons.check_box,
+        color: Colors.green,
+        size: 20.0
+      );
+
+    } else {
+      return Icon(
+          Icons.clear,
+          color: Colors.red,
+          size: 20.0
+      );
+    }
 
   }
 }
